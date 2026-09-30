@@ -29,4 +29,13 @@ class TaskController extends Controller
         }
         return response()->json($task);
     }
+    public function update(Request $request, $id)
+    {
+        $task = Task::find($id);
+        if (!$task) {
+            return response()->json(['message' => 'Task not found'], 404);
+        }
+        $task->update($request->only(['title', 'description', 'status', 'priority']));
+        return response()->json($task);
+    }
 }
