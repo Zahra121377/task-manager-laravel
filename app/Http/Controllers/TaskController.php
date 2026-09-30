@@ -13,12 +13,13 @@ class TaskController extends Controller
     }
     public function store(Request $request)
     {
-        $task = Task::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'status' => $request->input('status', 'pending'),
-            'priority' => $request->input('priority', 'medium'),
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'sometimes|in:pending,done',
+            'priority' => 'sometimes|in:low,medium,high',
         ]);
+        $task = Task::create($validated);
         return response()->json($task, 201); 
     }
     public function show($id)
