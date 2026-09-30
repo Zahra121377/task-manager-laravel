@@ -36,7 +36,13 @@ class TaskController extends Controller
         if (!$task) {
             return response()->json(['message' => 'Task not found'], 404);
         }
-        $task->update($request->only(['title', 'description', 'status', 'priority']));
+        $validated = $request->validate([
+            'title' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'status' => 'sometimes|in:pending,done',
+            'priority' => 'sometimes|in:low,medium,high',
+        ]);
+        $task->update($validated);
         return response()->json($task);
     }
     public function destroy($id)
