@@ -10,6 +10,6 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
 Route::post('/tasks', [\App\Http\Controllers\TaskController::class, 'store']);
-Route::get('/tasks/{id}', [\App\Http\Controllers\TaskController::class, 'show']);
-Route::put('/tasks/{id}', [\App\Http\Controllers\TaskController::class, 'update']);
-Route::delete('/tasks/{id}', [\App\Http\Controllers\TaskController::class, 'destroy']);
+Route::get('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show']);
+Route::put('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'update']);
+Route::delete('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'destroy']);

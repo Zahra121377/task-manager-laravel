@@ -22,20 +22,12 @@ class TaskController extends Controller
         $task = Task::create($validated);
         return response()->json($task, 201); 
     }
-    public function show($id)
+    public function show(Task $task)
     {
-        $task = Task::find($id);
-        if (!$task) {
-            return response()->json(['message' => 'Task not found'], 404);
-        }
         return response()->json($task);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
-        $task = Task::find($id);
-        if (!$task) {
-            return response()->json(['message' => 'Task not found'], 404);
-        }
         $validated = $request->validate([
             'title' => 'sometimes|string|max:255',
             'description' => 'sometimes|string',
@@ -45,12 +37,8 @@ class TaskController extends Controller
         $task->update($validated);
         return response()->json($task);
     }
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        $task = Task::find($id);
-        if (!$task) {
-            return response()->json(['message' => 'Task not found'], 404);
-        }
         $task->delete();
         return response()->json(['message' => 'Task deleted']);
     }
