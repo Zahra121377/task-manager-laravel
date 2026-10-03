@@ -21,7 +21,8 @@ class TaskController extends Controller
             'status' => 'sometimes|in:pending,done',
             'priority' => 'sometimes|in:low,medium,high',
         ]);
-        $task = Task::create($validated);
+        //$task = Task::create($validated);
+        $task = $request->user()->tasks()->create($validated);
         return response()->json($task, 201); 
     }
     public function show(Task $task)
