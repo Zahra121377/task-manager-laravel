@@ -16,3 +16,4 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('tasks', TaskController::class);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
