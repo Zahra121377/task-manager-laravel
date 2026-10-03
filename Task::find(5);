@@ -1,0 +1,34 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#8122
+    [34mall[39m: [
+      [34;4mApp\Models\User[39;24m {#8570
+        [34mid[39m: [35m3[39m,
+        [34mname[39m: [32m"[39m[32mZahra[39m[32m"[39m,
+        [34memail[39m: [32m"[39m[32mabc@example.com[39m[32m"[39m,
+        [34memail_verified_at[39m: [36mnull[39m,
+        #[33mpassword[39m: [32m"[39m\$[32m2y[39m\$[32m12[39m\$[32myVmjlsckK.xot7kuEYrx5epTIOq5F8eq/HpzwMV5qmIoYo9ODcO/y[39m[32m"[39m,
+        #[33mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-10-03 22:03:53[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-10-03 22:03:53[39m[32m"[39m,
+      },
+      [34;4mApp\Models\User[39;24m {#8571
+        [34mid[39m: [35m2[39m,
+        [34mname[39m: [32m"[39m[32mSara[39m[32m"[39m,
+        [34memail[39m: [32m"[39m[32msara@example.com[39m[32m"[39m,
+        [34memail_verified_at[39m: [36mnull[39m,
+        #[33mpassword[39m: [32m"[39m\$[32m2y[39m\$[32m12[39m\$[32mNn4qpjRAzlMmcMXrvL19F.Hq/jszwHkDbKRzDmrSqQKTE9SaYrrQu[39m[32m"[39m,
+        #[33mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-10-03 22:03:20[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-10-03 22:03:20[39m[32m"[39m,
+      },
+      [34;4mApp\Models\User[39;24m {#8568
+        [34mid[39m: [35m1[39m,
+        [34mname[39m: [32m"[39m[32mZahra[39m[32m"[39m,
+        [34memail[39m: [32m"[39m[32mzahra@example.com[39m[32m"[39m,
+        [34memail_verified_at[39m: [36mnull[39m,
+        #[33mpassword[39m: [32m"[39m\$[32m2y[39m\$[32m12[39m\$[32mpwcDphTXguOyGq56HTWAJuU3YW/E2Ml202FE6WWJh3RSRXmGd7ok6[39m[32m"[39m,
+        #[33mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-10-02 22:21:51[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-10-02 22:21:51[39m[32m"[39m,
+      },
+    ],
+  }
