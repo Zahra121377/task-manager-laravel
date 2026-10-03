@@ -9,7 +9,7 @@ class TaskController extends Controller
     public function index()
     {
         //$tasks = Task::all();
-        $tasks = Task::with('user')->get();
+        $tasks = Task::with('user')->latest()->paginate(10);
         return TaskResource::collection($tasks);
     }
     public function store(Request $request)
