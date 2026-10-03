@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Resources\TaskResource;
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         //$tasks = Task::all();
-        $tasks = Task::with('user')->latest()->paginate(10);
+        //$tasks = Task::with('user')->latest()->paginate(10);
+        $tasks = $request->user()->tasks()->with('user')->latest()->paginate(10);
         return TaskResource::collection($tasks);
     }
     public function store(Request $request)

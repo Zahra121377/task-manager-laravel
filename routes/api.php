@@ -14,6 +14,7 @@ Route::get('/user', function (Request $request) {
 // Route::put('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'update']);
 // Route::delete('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'destroy']);
 
-Route::apiResource('tasks', TaskController::class);
+// Route::apiResource('tasks', TaskController::class);
+Route::middleware('auth:sanctum')->apiResource('tasks', TaskController::class);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
