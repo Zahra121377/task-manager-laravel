@@ -50,6 +50,10 @@ const createTask = async () => {
   description.value = ''
   priority.value = 'medium'
 }
+const deleteTask = async (taskId) => {
+  await api.delete(`/tasks/${taskId}`)
+  tasks.value = tasks.value.filter((task) => task.id !== taskId)
+}
 </script>
 
 <template>
@@ -106,8 +110,9 @@ const createTask = async () => {
     </form>
     <div v-for="task in tasks" :key="task.id">
         <h3>{{ task.title }}</h3>
-        <p>Status: {{ task.status }}</p>
+        <p>Description: {{ task.description }}</p>
         <p>Priority: {{ task.priority }}</p>
+        <button @click="deleteTask(task.id)">Delete</button>
       </div>
   </div>
 </template>
