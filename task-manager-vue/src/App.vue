@@ -5,7 +5,9 @@ import api from './services/api'
 const email = ref('')
 const password = ref('')
 const tasks = ref([])
-
+const title = ref('')
+const description = ref('')
+const priority = ref('')
 onMounted(async () => {
   if (localStorage.getItem('token')) {
     await getTasks()
@@ -36,6 +38,18 @@ const getTasks = async () => {
 
   tasks.value = response.data.data
 }
+const createTask = async () => {
+  const response = await api.post('/tasks', {
+    title: title.value,
+    description: description.value,
+    priority: priority.value,
+  })
+  tasks.value.unshift(response.data)
+
+  title.value = ''
+  description.value = ''
+  priority.value = 'medium'
+}
 </script>
 
 <template>
@@ -43,7 +57,30 @@ const getTasks = async () => {
     <h1>Task Manager</h1>
 
     <h2>Login</h2>
+    <h2>Create Task</h2>
 
+    <form @submit.prevent="createTask">
+      <input
+        v-model="title"
+        type="text"
+        placeholder="Title"
+      />
+
+      <textarea
+        v-model="description"
+        placeholder="Description"
+      ></textarea>
+
+      <select v-model="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <button type="submit">
+        Create Task
+      </button>
+    </form>
     <form @submit.prevent="handleLogin">
       <input
         v-model="email"
@@ -66,7 +103,6 @@ const getTasks = async () => {
       <button type="button" @click="handleLogout">
         Logout
       </button> 
-      
     </form>
     <div v-for="task in tasks" :key="task.id">
         <h3>{{ task.title }}</h3>
