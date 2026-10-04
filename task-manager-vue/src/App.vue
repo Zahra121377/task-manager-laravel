@@ -1,11 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import api from './services/api'
 
 const email = ref('')
 const password = ref('')
 const tasks = ref([])
 
+onMounted(async () => {
+  if (localStorage.getItem('token')) {
+    await getTasks()
+  }
+})
 const handleLogin = async () => {
   const response = await api.post('/login', {
     email: email.value,
@@ -17,6 +22,13 @@ const handleLogin = async () => {
   localStorage.setItem('token', token)
 
   console.log('Token saved to localStorage')
+  await getTasks()
+}
+const handleLogout = async () => {
+  await api.post('/logout')
+  localStorage.removeItem('token')
+  tasks.value = []
+  console.log('Token removed from localStorage')
 }
 
 const getTasks = async () => {
@@ -48,14 +60,18 @@ const getTasks = async () => {
       <button type="submit">
         Login
       </button>
-      <button @click="getTasks">
+      <button type="button" @click="getTasks">
         Get Tasks
       </button>
-      <div v-for="task in tasks" :key="task.id">
+      <button type="button" @click="handleLogout">
+        Logout
+      </button> 
+      
+    </form>
+    <div v-for="task in tasks" :key="task.id">
         <h3>{{ task.title }}</h3>
         <p>Status: {{ task.status }}</p>
         <p>Priority: {{ task.priority }}</p>
       </div>
-    </form>
   </div>
 </template>
