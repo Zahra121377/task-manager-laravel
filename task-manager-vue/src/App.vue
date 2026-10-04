@@ -54,6 +54,25 @@ const deleteTask = async (taskId) => {
   await api.delete(`/tasks/${taskId}`)
   tasks.value = tasks.value.filter((task) => task.id !== taskId)
 }
+const updateTask = async (taskId) => {
+  const taskToUpdate = tasks.value.find((task) => task.id === taskId)
+  if (!taskToUpdate) return
+
+  const updatedTitle = prompt('Enter new title:', taskToUpdate.title)
+  const updatedDescription = prompt('Enter new description:', taskToUpdate.description)
+  const updatedPriority = prompt('Enter new priority (low, medium, high):', taskToUpdate.priority)
+
+  if (updatedTitle && updatedDescription && updatedPriority) {
+    const response = await api.put(`/tasks/${taskId}`, {
+      title: updatedTitle,
+      description: updatedDescription,
+      priority: updatedPriority,
+    })
+
+    const index = tasks.value.findIndex((task) => task.id === taskId)
+    tasks.value[index] = response.data
+  }
+}
 </script>
 
 <template>
@@ -113,6 +132,7 @@ const deleteTask = async (taskId) => {
         <p>Description: {{ task.description }}</p>
         <p>Priority: {{ task.priority }}</p>
         <button @click="deleteTask(task.id)">Delete</button>
+        <button @click="updateTask(task.id)">Update</button>
       </div>
   </div>
 </template>
