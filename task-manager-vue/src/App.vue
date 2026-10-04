@@ -23,6 +23,7 @@ const getTasks = async () => {
   const response = await api.get('/tasks')
 
   tasks.value = response.data.data
+}
 </script>
 
 <template>
@@ -50,6 +51,11 @@ const getTasks = async () => {
       <button @click="getTasks">
         Get Tasks
       </button>
+      <div v-for="task in tasks" :key="task.id">
+        <h3>{{ task.title }}</h3>
+        <p>Status: {{ task.status }}</p>
+        <p>Priority: {{ task.priority }}</p>
+      </div>
     </form>
   </div>
 </template>
