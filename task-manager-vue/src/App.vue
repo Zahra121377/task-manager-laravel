@@ -80,6 +80,29 @@ const updateTask = async (taskId) => {
     <h1>Task Manager</h1>
 
     <h2>Login</h2>
+        <form @submit.prevent="handleLogin">
+      <input
+        v-model="email"
+        type="email"
+        placeholder="Email"
+      />
+
+      <input
+        v-model="password"
+        type="password"
+        placeholder="Password"
+      />
+
+      <button type="submit">
+        Login
+      </button>
+      <button type="button" @click="getTasks">
+        Get Tasks
+      </button>
+      <button type="button" @click="handleLogout">
+        Logout
+      </button> 
+    </form>
     <h2>Create Task</h2>
 
     <form @submit.prevent="createTask">
@@ -104,29 +127,7 @@ const updateTask = async (taskId) => {
         Create Task
       </button>
     </form>
-    <form @submit.prevent="handleLogin">
-      <input
-        v-model="email"
-        type="email"
-        placeholder="Email"
-      />
 
-      <input
-        v-model="password"
-        type="password"
-        placeholder="Password"
-      />
-
-      <button type="submit">
-        Login
-      </button>
-      <button type="button" @click="getTasks">
-        Get Tasks
-      </button>
-      <button type="button" @click="handleLogout">
-        Logout
-      </button> 
-    </form>
     <div v-for="task in tasks" :key="task.id">
         <h3>{{ task.title }}</h3>
         <p>Description: {{ task.description }}</p>
